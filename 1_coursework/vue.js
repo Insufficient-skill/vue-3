@@ -1,11 +1,8 @@
-// вы можете как угодно изменять программу и код
-// добавлять любые переменные и модели
-// ваша задача реализовать так, как показано на видео, чтобы оно работало
-
 const App = {
   data() {
     return {
-      activeIndex: 0, // то, что позволяет определить текущий активный шаг
+      activeStepIndex: 0,
+      isFinishedState: false,
       steps: [
         {
           title: 'Основы',
@@ -35,25 +32,31 @@ const App = {
       ]
     }
   },
+
   methods: {
     prev() {
-      // когда нажимаем кнопку назад
+      this.activeStepIndex--
     },
-    reset() {
-      // начать заново
-    },
-    nextOfFinish() {
-      // кнопка вперед или закончить
+    nextOrFinish() {
+      this.activeStepIndex === this.steps.length - 1
+        ? (this.isFinishedState = true)
+        : this.activeStepIndex++
     },
     setActive(idx) {
-      // когда нажимаем на определенный шаг
+      if (!this.isFinishedState) {
+        this.activeStepIndex = idx
+      }
+    },
+    reset() {
+      this.activeStepIndex = 0
+      this.isFinishedState = false
     }
   },
+
   computed: {
-    // тут стоит определить несколько свойств:
-    // 1. текущий выбранный шаг
-    // 2. выключена ли кнопка назад
-    // 3. находимся ли мы на последнем шаге
+    currentStepText() {
+      return this.steps[this.activeStepIndex].text
+    }
   }
 }
 
