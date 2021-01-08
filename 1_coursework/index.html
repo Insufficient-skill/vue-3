@@ -35,12 +35,11 @@
             </li>
           </ul>
           <div v-if="!isFinishedState">
-            <button class="btn" :disabled="activeStepIndex === 0" @click="prev">
+            <button class="btn" :disabled="prevDisabled" @click="prev">
               Назад
             </button>
             <button class="btn primary" @click="nextOrFinish">
-              {{ activeStepIndex === steps.length - 1 ? 'Закончить' : 'Вперед'
-              }}
+              {{ isLastStep ? 'Закончить' : 'Вперед' }}
             </button>
           </div>
           <div v-else>

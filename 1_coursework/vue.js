@@ -35,7 +35,9 @@ const App = {
 
   methods: {
     prev() {
-      this.activeStepIndex--
+      if (this.activeStepIndex !== 0) {
+        this.activeStepIndex--
+      }
     },
     nextOrFinish() {
       this.activeStepIndex === this.steps.length - 1
@@ -56,6 +58,12 @@ const App = {
   computed: {
     currentStepText() {
       return this.steps[this.activeStepIndex].text
+    },
+    isLastStep() {
+      return this.activeStepIndex === this.steps.length - 1
+    },
+    prevDisabled() {
+      return this.activeStepIndex === 0
     }
   }
 }
