@@ -35,14 +35,12 @@ const App = {
 
   methods: {
     prev() {
-      if (this.activeStepIndex !== 0) {
+      if (!this.prevDisabled) {
         this.activeStepIndex--
       }
     },
     nextOrFinish() {
-      this.activeStepIndex === this.steps.length - 1
-        ? (this.isFinishedState = true)
-        : this.activeStepIndex++
+      this.isLastStep ? (this.isFinishedState = true) : this.activeStepIndex++
     },
     setActive(idx) {
       if (!this.isFinishedState) {
