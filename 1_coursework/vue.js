@@ -35,7 +35,7 @@ const App = {
 
   methods: {
     prev() {
-      if (!this.prevDisabled) {
+      if (!this.isFirstStep) {
         this.activeStepIndex--
       }
     },
@@ -60,7 +60,7 @@ const App = {
     isLastStep() {
       return this.activeStepIndex === this.steps.length - 1
     },
-    prevDisabled() {
+    isFirstStep() {
       return this.activeStepIndex === 0
     }
   }

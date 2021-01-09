@@ -35,7 +35,7 @@
             </li>
           </ul>
           <div v-if="!isFinishedState">
-            <button class="btn" :disabled="prevDisabled" @click="prev">
+            <button class="btn" :disabled="isFirstStep" @click="prev">
               Назад
             </button>
             <button class="btn primary" @click="nextOrFinish">
